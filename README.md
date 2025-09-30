@@ -86,12 +86,14 @@ curl https://ecfr-analyzer.onrender.com/api/v1/agencies/size
 curl https://ecfr-analyzer.onrender.com/api/v1/update
 
 🖥 Local Setup & Test
+
 1. Clone the Repository
 git clone <your-repo-url>
 cd ecfr-analyzer
 
 2. Create & Activate a Virtual Environment (Recommended)
 python3 -m venv .venv
+
 source .venv/bin/activate   # macOS/Linux
 # .venv\Scripts\activate    # Windows
 
@@ -128,6 +130,6 @@ Manual refresh is available via /api/v1/update.
 Make sure your machine has internet access so the API can reach the eCFR public endpoints.
 
 
-📝 Summary
-
+``📝 Summary
 This project provides a FastAPI JSON API for analyzing federal regulations per agency using live eCFR data. It supports fast responses through in-memory caching and ensures data stays up to date via automatic 24-hour refresh and manual update endpoints.
+``
