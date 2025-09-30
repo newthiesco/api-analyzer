@@ -130,5 +130,5 @@ Manual refresh is available via /api/v1/update.
 Make sure your machine has internet access so the API can reach the eCFR public endpoints.
 
 
-##📝 Summary
+## 📝 Summary
 This project provides a FastAPI JSON API for analyzing federal regulations per agency using live eCFR data. It supports fast responses through in-memory caching and ensures data stays up to date via automatic 24-hour refresh and manual update endpoints.
