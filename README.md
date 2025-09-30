@@ -1,0 +1,133 @@
+# eCFR Analyzer API
+
+A FastAPI-based JSON API to analyze federal regulations (eCFR) and provide estimated regulation sizes per agency. This project helps provide digestible insights for potential deregulation efforts across the U.S. government.
+
+---
+
+## What this project does
+- Exposes a JSON API with several endpoints:
+  - `/api/v1/agencies/size` → returns agency names with estimated regulation sizes (in MB).  
+  - `/api/v1/update` → refreshes the data on demand.  
+  - `/api/v1/health` → simple health check for the service.
+- Fetches real regulation data from the **public eCFR API** and calculates the approximate size of each agency’s regulations.
+- Caches results **in memory** so responses are fast. The cache is refreshed automatically at startup, manually via the update endpoint, **and also automatically every 24 hours** via a background task, ensuring the API reflects recent eCFR changes.
+- **Note:** In production, this background task guarantees that the cache stays current without modifying source code, fulfilling the 24-hour refresh requirement.
+
+---
+
+## How it works (brief)
+- The app connects to the official **eCFR public API** at [https://www.ecfr.gov/api](https://www.ecfr.gov/api).  
+- It fetches the list of federal agencies from `/admin/v1/agencies.json`, then queries `/versioner/v1/titles.json?agency=...` for each agency to retrieve regulation data.  
+- The JSON response is serialized, and its size is calculated in **megabytes (MB)** to estimate the amount of regulation content per agency.  
+- Results are stored in an **in-memory cache** (Python variable) for fast responses.  
+- The cache is refreshed automatically on startup, can be updated manually via `/api/v1/update`, and is **automatically refreshed every 24 hours** via a background task.
+
+---
+
+## 🚀 Deployment (Render-specific)
+You can deploy this app to any server that supports Python and has internet access.
+
+### 1. Push Your Code to GitHub
+- Ensure your project (`ecfr-analyzer/`) is in a GitHub repository.  
+- Commit and push all files, including `requirements.txt`, `build.sh`, and `app/`.
+
+### 2. Create a New Web Service on Render
+1. Log in to [Render](https://dashboard.render.com).  
+2. Click **New → Web Service**.  
+3. Connect your GitHub repository.  
+4. Select your repo (`ecfr-analyzer`) and branch (e.g., `main`).
+
+### 3. Configure the Service
+- **Environment**: Python 3  
+- **Build Command**:
+```bash
+chmod +x build.sh && ./build.sh
+
+##Start Command:
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+4. Deploy
+
+Click Create Web Service.
+
+Render installs dependencies, builds, and starts the app.
+
+You will get a service URL like https://ecfr-analyzer.onrender.com.
+
+5. Verify & Monitor
+
+Access the endpoints to verify functionality.
+
+Use Render’s Dashboard → Logs to monitor activity and ensure the cache updates properly.
+
+📡 Usage
+Endpoints
+
+Root: / → Returns service status and available endpoints.
+
+Get Agency Sizes: /api/v1/agencies/size → Returns JSON with agency names, slugs, regulation sizes (MB), and last updated timestamps.
+
+Manual Update: /api/v1/update → Triggers a refresh of the cached data immediately.
+
+Health Check: /api/v1/health → Simple status check to verify the service is running.
+
+Examples
+Using Browser
+https://ecfr-analyzer.onrender.com/api/v1/health
+
+Using curl
+# Health
+curl https://ecfr-analyzer.onrender.com/api/v1/health
+
+# Agency sizes
+curl https://ecfr-analyzer.onrender.com/api/v1/agencies/size
+
+# Manual update
+curl https://ecfr-analyzer.onrender.com/api/v1/update
+
+🖥 Local Setup & Test
+1. Clone the Repository
+git clone <your-repo-url>
+cd ecfr-analyzer
+
+2. Create & Activate a Virtual Environment (Recommended)
+python3 -m venv .venv
+source .venv/bin/activate   # macOS/Linux
+# .venv\Scripts\activate    # Windows
+
+3. Install Dependencies
+
+pip install -r minimal-requirements.txt
+
+✅ Verify requests is installed:
+
+python -c "import requests; print('✅ requests installed')"
+
+4. Run the API Locally
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+#The API will be available at: http://127.0.0.1:8000/
+
+5. Test Endpoints
+# Health check
+curl http://127.0.0.1:8000/api/v1/health
+
+# Get agency sizes
+curl http://127.0.0.1:8000/api/v1/agencies/size
+
+# Manual update
+curl http://127.0.0.1:8000/api/v1/update
+
+
+##Notes
+
+The in-memory cache is refreshed automatically at startup and every 24 hours via the background task.
+
+Manual refresh is available via /api/v1/update.
+
+Make sure your machine has internet access so the API can reach the eCFR public endpoints.
+
+
+📝 Summary
+
+This project provides a FastAPI JSON API for analyzing federal regulations per agency using live eCFR data. It supports fast responses through in-memory caching and ensures data stays up to date via automatic 24-hour refresh and manual update endpoints.
