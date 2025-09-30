@@ -42,6 +42,8 @@ You can deploy this app to any server that supports Python and has internet acce
 - **Build Command**:
 ```bash
 chmod +x build.sh && ./build.sh
+```
+
 
 ##Start Command:
 uvicorn app.main:app --host 0.0.0.0 --port 8000
