@@ -77,13 +77,13 @@ Using Browser
 https://ecfr-analyzer.onrender.com/api/v1/health
 
 Using curl
-### Health
+Health
 curl https://ecfr-analyzer.onrender.com/api/v1/health
 
-### Agency sizes
+Agency sizes
 curl https://ecfr-analyzer.onrender.com/api/v1/agencies/size
 
-### Manual update
+Manual update
 curl https://ecfr-analyzer.onrender.com/api/v1/update
 
 🖥 Local Setup & Test
@@ -110,16 +110,16 @@ python -c "import requests; print('✅ requests installed')"
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
-### The API will be available at: http://127.0.0.1:8000/
+ The API will be available at: http://127.0.0.1:8000/
 
 5. Test Endpoints
-### Health check
+ Health check
 curl http://127.0.0.1:8000/api/v1/health
 
-### Get agency sizes
+ Get agency sizes
 curl http://127.0.0.1:8000/api/v1/agencies/size
 
-### Manual update
+Manual update
 curl http://127.0.0.1:8000/api/v1/update
 
 
