@@ -81,14 +81,17 @@ https://ecfr-analyzer.onrender.com/api/v1/health
 
 ## Using curl
 Health:
+```bash
 curl https://ecfr-analyzer.onrender.com/api/v1/health
-
+```
 Agency sizes:
+```bash
 curl https://ecfr-analyzer.onrender.com/api/v1/agencies/size
-
+```
 Manual update:
+```bash
 curl https://ecfr-analyzer.onrender.com/api/v1/update
-
+```
 
 
 ## 🖥 Local Setup & Test
@@ -103,7 +106,8 @@ cd ecfr-analyzer
 python3 -m venv .venv
 
 source .venv/bin/activate  ### macOS/Linux
-
+```
+```bash
 .venv\Scripts\activate   ### Windows
 ```
 3. ### Install Dependencies
@@ -122,14 +126,17 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 5. Test Endpoints
  Health check
+ ```bash
 curl http://127.0.0.1:8000/api/v1/health
-
+```
  Get agency sizes
+ ```bash
 curl http://127.0.0.1:8000/api/v1/agencies/size
-
+```
 Manual update
+```bash
 curl http://127.0.0.1:8000/api/v1/update
-
+```
 
 ## Assessment Feedback:
 This project implements a production-ready FastAPI JSON API that analyzes federal regulations per agency using live data from the public eCFR API. It calculates estimated regulation sizes, serves results via in-memory caching, and includes a background task for automatic 24-hour refresh, meeting the assessment requirements. The API provides endpoints for agency sizes, manual updates, and health checks, with clear logging and error handling. The code is modular, deployment-ready (e.g., on Render.com), and fully tested locally. Total development time was approximately 10.5 hours. This submission demonstrates both technical proficiency in Python/DevOps and the ability to deliver a maintainable, real-world service.
