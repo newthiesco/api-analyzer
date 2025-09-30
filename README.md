@@ -24,7 +24,7 @@ This project creates FastAPI-based JSON API to analyze federal regulations (eCFR
 ---
 
 ## 🚀 Deployment (Render-specific)
-You can deploy this app to any server that supports Python and has internet access. In this case the app is deployed using Render
+You can deploy this app to any server that supports Python and has internet access. In this case the app is deployed using Render web service.
 
 ### 1. Push Your Code to GitHub
 - Ensure your project (`ecfr-analyzer/`) is in a GitHub repository.  
@@ -75,18 +75,18 @@ Manual Update: /api/v1/update → Triggers a refresh of the cached data immediat
 Health Check: /api/v1/health → Simple status check to verify the service is running.
 
 ## Examples
-Using Browser
 
+## Using Browser: 
 https://ecfr-analyzer.onrender.com/api/v1/health
 
-Using curl
-Health
+## Using curl
+Health:
 curl https://ecfr-analyzer.onrender.com/api/v1/health
 
-Agency sizes
+Agency sizes:
 curl https://ecfr-analyzer.onrender.com/api/v1/agencies/size
 
-Manual update
+Manual update:
 curl https://ecfr-analyzer.onrender.com/api/v1/update
 
 
