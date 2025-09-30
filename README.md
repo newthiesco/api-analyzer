@@ -1,6 +1,7 @@
 ## eCFR API Analyzer
 
 This project creates FastAPI-based JSON API to analyze federal regulations (eCFR) and provide estimated regulation sizes per agency.
+
 ---
 
 ## What this project does
