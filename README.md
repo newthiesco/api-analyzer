@@ -94,23 +94,24 @@ git clone <your-repo-url>
 cd ecfr-analyzer
 
 2. Create & Activate a Virtual Environment (Recommended)
+```bash
 python3 -m venv .venv
-
-source .venv/bin/activate   # macOS/Linux
-### .venv\Scripts\activate    # Windows
-
-3. Install Dependencies
-
-pip install -r minimal-requirements.txt
-
-✅ Verify requests is installed:
-
+source .venv/bin/activate  ### macOS/Linux
+.venv\Scripts\activate   ### Windows
+```
+3. ### Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+### ✅ Verify requests is installed:
+```bash
 python -c "import requests; print('✅ requests installed')"
-
+```
 4. Run the API Locally
+```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-
-#The API will be available at: http://127.0.0.1:8000/
+```
+### The API will be available at: http://127.0.0.1:8000/
 
 5. Test Endpoints
 ### Health check
